@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29 mars 2020 18:39:08 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="app.model.bo.Ligne" table="ligne" catalog="ecommerce" optimistic-lock="version">
+        <composite-id name="id" class="app.model.bo.LigneId">
+            <key-property name="idPanier" type="int">
+                <column name="id_panier" />
+            </key-property>
+            <key-property name="idArticle" type="int">
+                <column name="id_article" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="article" class="app.model.bo.Article" update="false" insert="false" fetch="select">
+            <column name="id_article" not-null="true" />
+        </many-to-one>
+        <many-to-one name="panier" class="app.model.bo.Panier" update="false" insert="false" fetch="select">
+            <column name="id_panier" not-null="true" />
+        </many-to-one>
+        <property name="quantite" type="int">
+            <column name="quantite" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

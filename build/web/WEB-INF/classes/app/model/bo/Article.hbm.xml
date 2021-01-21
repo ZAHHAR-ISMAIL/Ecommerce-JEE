@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29 mars 2020 18:39:08 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="app.model.bo.Article" table="article" catalog="ecommerce" optimistic-lock="version">
+        <id name="idArticle" type="java.lang.Integer">
+            <column name="id_article" />
+            <generator class="identity" />
+        </id>
+        <property name="image" type="string">
+            <column name="image" length="250" not-null="true" />
+        </property>
+        <property name="nbStock" type="int">
+            <column name="nb_stock" not-null="true" />
+        </property>
+        <property name="prix" type="double">
+            <column name="prix" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="categorie" type="string">
+            <column name="categorie" length="30" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="250" not-null="true" />
+        </property>
+        <set name="lignes" table="ligne" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_article" not-null="true" />
+            </key>
+            <one-to-many class="app.model.bo.Ligne" />
+        </set>
+    </class>
+</hibernate-mapping>

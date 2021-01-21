@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29 mars 2020 18:39:08 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="app.model.bo.Client" table="client" catalog="ecommerce" optimistic-lock="version">
+        <id name="idClient" type="java.lang.Integer">
+            <column name="id_client" />
+            <generator class="identity" />
+        </id>
+        <property name="nom" type="string">
+            <column name="nom" length="30" not-null="true" />
+        </property>
+        <property name="prenom" type="string">
+            <column name="prenom" length="30" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="40" not-null="true" />
+        </property>
+        <property name="mdp" type="string">
+            <column name="mdp" length="30" not-null="true" />
+        </property>
+        <property name="adresse" type="string">
+            <column name="adresse" length="100" not-null="true" />
+        </property>
+        <property name="tele" type="string">
+            <column name="tele" length="20" not-null="true" />
+        </property>
+        <set name="paniers" table="panier" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_client" not-null="true" />
+            </key>
+            <one-to-many class="app.model.bo.Panier" />
+        </set>
+    </class>
+</hibernate-mapping>
